@@ -1,5 +1,7 @@
 stages:
   - lint
+  - build
+  - deploy
   - sync
 
 workflow:
@@ -25,6 +27,32 @@ lint:
     - yarn install --immutable
   script:
     - yarn lint
+
+build:
+  stage: build
+  image: node:22-alpine
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - corepack enable
+    - yarn install --immutable
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
+
+deploy:
+  stage: deploy
+  image: node:22-alpine
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - npx wrangler@latest pages deploy dist --project-name=holter-site --branch=main
+  environment:
+    name: production
+    url: https://holter.dev
 
 sync-github:
   stage: sync
