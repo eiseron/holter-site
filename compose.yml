@@ -1,0 +1,9 @@
+services:
+  site:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "4321:4321"
+    command: sh -c "corepack enable && yarn install && yarn dev"

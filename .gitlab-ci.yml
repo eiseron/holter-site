@@ -1,13 +1,36 @@
 stages:
+  - lint
   - sync
 
 workflow:
   rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+cache:
+  key:
+    files:
+      - yarn.lock
+  paths:
+    - .yarn/cache/
+
+lint:
+  stage: lint
+  image: node:22-alpine
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - corepack enable
+    - yarn install --immutable
+  script:
+    - yarn lint
 
 sync-github:
   stage: sync
   image: alpine:3
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   variables:
     GIT_DEPTH: "0"
   before_script:
