@@ -1,0 +1,61 @@
+---
+import "../styles/variables.css";
+import "../styles/base.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+};
+
+const {
+  title = "Holter | Monitoramento de uptime para agências de performance",
+  description = "Auditoria ativa de uptime para agências de performance. O Holter audita a integridade dos sites 24/7 e pausa anúncios no Google Ads e Meta Ads ao detectar uma queda. Não patrocine páginas 404.",
+  ogImage = "/og-image.svg",
+} = Astro.props;
+
+const canonical = new URL(
+  Astro.url.pathname,
+  Astro.site ?? "https://holter.dev",
+).toString();
+const ogImageUrl = new URL(
+  ogImage,
+  Astro.site ?? "https://holter.dev",
+).toString();
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Holter" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,90 @@
+---
+import PricingCard from "./PricingCard.astro";
+import { plans } from "../data/plans";
+---
+
+<section class="pricing" id="planos">
+  <div class="pricing__inner">
+    <p class="pricing__eyebrow">Planos</p>
+    <h2 class="pricing__title">
+      Comece gratuitamente. Avance quando precisar.
+    </h2>
+    <p class="pricing__lede">
+      Três planos para atender desde freelancers em fase inicial até agências
+      que gerenciam centenas de campanhas simultaneamente.
+    </p>
+
+    <div class="pricing__grid">
+      {
+        plans.map((plan) => (
+          <PricingCard
+            name={plan.name}
+            tagline={plan.tagline}
+            price={plan.price}
+            priceSuffix={plan.priceSuffix}
+            features={plan.features}
+            ctaText={plan.ctaText}
+            ctaUrl={plan.ctaUrl}
+            highlighted={plan.highlighted}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing {
+    padding: var(--space-12) var(--space-6);
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .pricing__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pricing__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 var(--space-4);
+  }
+
+  .pricing__title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    max-width: 22ch;
+  }
+
+  .pricing__lede {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    max-width: 60ch;
+    margin: 0 0 var(--space-10);
+  }
+
+  .pricing__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+
+  @media (max-width: 900px) {
+    .pricing__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

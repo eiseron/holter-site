@@ -1,0 +1,188 @@
+---
+type Props = {
+  name: string;
+  tagline: string;
+  price: string;
+  priceSuffix?: string;
+  features: string[];
+  ctaText: string;
+  ctaUrl: string;
+  highlighted?: boolean;
+};
+
+const {
+  name,
+  tagline,
+  price,
+  priceSuffix,
+  features,
+  ctaText,
+  ctaUrl,
+  highlighted = false,
+} = Astro.props;
+---
+
+<article class:list={["plan", { "plan--highlighted": highlighted }]}>
+  {highlighted && <span class="plan__badge">Melhor Custo-Benefício</span>}
+  <header class="plan__header">
+    <h3 class="plan__name">{name}</h3>
+    <p class="plan__tagline">{tagline}</p>
+  </header>
+  <div class="plan__price">
+    <span class="plan__price-amount">{price}</span>
+    {priceSuffix && <span class="plan__price-suffix">{priceSuffix}</span>}
+  </div>
+  <ul class="plan__features">
+    {features.map((feature) => <li>{feature}</li>)}
+  </ul>
+  <a
+    href={ctaUrl}
+    class:list={["plan__cta", { "plan__cta--primary": highlighted }]}
+    target="_blank"
+    rel="noopener"
+  >
+    {ctaText}
+  </a>
+</article>
+
+<style>
+  .plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-8) var(--space-6);
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+  }
+
+  .plan--highlighted {
+    border-color: var(--color-accent);
+    background-color: var(--color-bg);
+    box-shadow: inset 0 0 0 1px var(--color-accent);
+  }
+
+  .plan__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(0, -50%);
+    background-color: var(--color-accent);
+    color: var(--color-accent-content);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-3);
+  }
+
+  .plan__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .plan__name {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--font-size-2xl);
+    line-height: 1.2;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .plan__tagline {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .plan__price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-1);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .plan__price-amount {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--font-size-display);
+    line-height: 1;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+  }
+
+  .plan__price-suffix {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .plan__features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex-grow: 1;
+  }
+
+  .plan__features li {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+    color: var(--color-text);
+    padding-left: var(--space-5);
+    position: relative;
+  }
+
+  .plan__features li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 10px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+
+  .plan__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .plan__cta:hover,
+  .plan__cta:focus-visible {
+    background-color: var(--color-text);
+    color: var(--color-text-inverse);
+  }
+
+  .plan__cta--primary {
+    background-color: var(--color-accent);
+    color: var(--color-accent-content);
+    border-color: var(--color-accent);
+  }
+
+  .plan__cta--primary:hover,
+  .plan__cta--primary:focus-visible {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-accent-content);
+  }
+</style>

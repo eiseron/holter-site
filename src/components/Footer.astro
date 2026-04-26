@@ -1,0 +1,118 @@
+---
+import Logo from "./Logo.astro";
+import { EISERON_URL, GITHUB_URL, STATUS_URL } from "../data/links";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <Logo size={24} />
+      <p class="site-footer__tagline">
+        Monitoramento de uptime para agências de performance e gestores de
+        tráfego.
+      </p>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Links institucionais">
+      <ul>
+        <li><a href="/terms">Termos de Uso</a></li>
+        <li><a href="/privacy">Política de Privacidade</a></li>
+        <li>
+          <a href={STATUS_URL} target="_blank" rel="noopener"
+            >Status do Sistema</a
+          >
+        </li>
+        <li>
+          <a href={GITHUB_URL} target="_blank" rel="noopener">Código Fonte</a>
+        </li>
+      </ul>
+    </nav>
+
+    <p class="site-footer__credit">
+      © {currentYear}
+      <a href={EISERON_URL} target="_blank" rel="noopener">Eiseron</a>. Holter é
+      um produto Eiseron.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-bg-subtle);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .site-footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-10) var(--space-6);
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--space-10);
+  }
+
+  .site-footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .site-footer__tagline {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 36ch;
+  }
+
+  .site-footer__nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: var(--space-3) var(--space-8);
+  }
+
+  .site-footer__nav a {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer__nav a:hover,
+  .site-footer__nav a:focus-visible {
+    color: var(--color-text);
+  }
+
+  .site-footer__credit {
+    grid-column: 1 / -1;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border-subtle);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-subtle);
+    margin: 0;
+  }
+
+  .site-footer__credit a {
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer__credit a:hover,
+  .site-footer__credit a:focus-visible {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 720px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+</style>

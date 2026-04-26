@@ -1,5 +1,20 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Problem from "../components/Problem.astro";
+import Solution from "../components/Solution.astro";
+import Pricing from "../components/Pricing.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<h1>Holter</h1>
+<BaseLayout>
+  <Header />
+  <main>
+    <Hero />
+    <Problem />
+    <Solution />
+    <Pricing />
+  </main>
+  <Footer />
+</BaseLayout>

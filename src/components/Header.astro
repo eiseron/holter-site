@@ -1,0 +1,98 @@
+---
+import Logo from "./Logo.astro";
+import { APP_URL, DOCS_URL } from "../data/links";
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__brand" aria-label="Holter, página inicial">
+      <Logo size={28} />
+    </a>
+    <nav class="site-header__nav">
+      <a href={DOCS_URL} class="nav-link" target="_blank" rel="noopener"
+        >Documentação</a
+      >
+      <a
+        href={`${APP_URL}/auth`}
+        class="nav-cta"
+        target="_blank"
+        rel="noopener"
+      >
+        Acessar Painel
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .site-header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .nav-link {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    color: var(--color-text);
+  }
+
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-accent);
+    color: var(--color-accent-content);
+    border: 1px solid var(--color-accent);
+    transition:
+      background-color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .nav-cta:hover,
+  .nav-cta:focus-visible {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+
+  @media (max-width: 540px) {
+    .site-header__inner {
+      padding: var(--space-3) var(--space-4);
+    }
+    .nav-link {
+      display: none;
+    }
+  }
+</style>

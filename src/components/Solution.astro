@@ -1,0 +1,195 @@
+---
+
+---
+
+<section class="solution" id="solucao">
+  <div class="solution__inner">
+    <p class="solution__eyebrow">A Solução</p>
+    <h2 class="solution__title">
+      Auditoria ativa 24/7. Saídas configuráveis em paralelo.
+    </h2>
+    <p class="solution__lede">
+      Ao detectar uma falha, o Holter aciona cada integração configurada de
+      forma independente. Notificações, webhooks e a Proteção de Ads operam em
+      paralelo. Sua equipe escolhe quais ativar para cada cliente.
+    </p>
+
+    <article
+      class="solution__detection"
+      aria-labelledby="solution-detection-title"
+    >
+      <span class="solution__detection-label">Auditoria Ativa</span>
+      <h3 class="solution__detection-title" id="solution-detection-title">
+        Verificação contínua de integridade.
+      </h3>
+      <p class="solution__detection-body">
+        HTTP, SSL, conteúdo e performance auditados a cada minuto. Cada
+        incidente é confirmado e gravado com evidência imutável antes de
+        disparar qualquer saída.
+      </p>
+    </article>
+
+    <p class="solution__outputs-label">
+      Saídas independentes, ativadas sob demanda
+    </p>
+    <div class="solution__outputs">
+      <article class="solution__output">
+        <h4 class="solution__output-title">Notificações</h4>
+        <p class="solution__output-body">
+          E-mail imediato para os destinatários configurados a cada incidente
+          confirmado.
+        </p>
+      </article>
+      <article class="solution__output">
+        <h4 class="solution__output-title">Webhook</h4>
+        <p class="solution__output-body">
+          POST com o payload do incidente para a URL definida pelo cliente.
+          Compatível com qualquer plataforma.
+        </p>
+      </article>
+      <article class="solution__output solution__output--accent">
+        <h4 class="solution__output-title">Proteção de Ads</h4>
+        <p class="solution__output-body">
+          Integração nativa com Google Ads e Meta Ads. Pausa as campanhas do
+          site afetado e retoma quando a integridade é restabelecida.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .solution {
+    padding: var(--space-12) var(--space-6);
+    background-color: var(--color-bg-subtle);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .solution__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .solution__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 var(--space-4);
+  }
+
+  .solution__title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    max-width: 26ch;
+  }
+
+  .solution__lede {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    max-width: 70ch;
+    margin: 0 0 var(--space-10);
+  }
+
+  .solution__detection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-8);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-accent);
+    box-shadow: inset 0 0 0 1px var(--color-accent);
+    margin: 0 0 var(--space-8);
+  }
+
+  .solution__detection-label {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .solution__detection-title {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--font-size-2xl);
+    line-height: 1.2;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .solution__detection-body {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 70ch;
+  }
+
+  .solution__outputs-label {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-subtle);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 var(--space-4);
+  }
+
+  .solution__outputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .solution__output {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+  }
+
+  .solution__output--accent {
+    border-color: var(--color-accent);
+  }
+
+  .solution__output-title {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--font-size-xl);
+    line-height: 1.2;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .solution__output-body {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-md);
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .solution__outputs {
+      grid-template-columns: 1fr;
+    }
+    .solution__detection {
+      padding: var(--space-6);
+    }
+  }
+</style>
