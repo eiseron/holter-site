@@ -6,11 +6,13 @@ import Problem from "../components/Problem.astro";
 import Solution from "../components/Solution.astro";
 import Pricing from "../components/Pricing.astro";
 import Footer from "../components/Footer.astro";
+import PulseMesh from "../components/PulseMesh.astro";
 ---
 
 <BaseLayout>
   <Header />
   <main>
+    <div class="hero-bg" aria-hidden="true"><PulseMesh /></div>
     <Hero />
     <Problem />
     <Solution />
@@ -18,3 +20,33 @@ import Footer from "../components/Footer.astro";
   </main>
   <Footer />
 </BaseLayout>
+
+<style is:global>
+  main {
+    position: relative;
+    isolation: isolate;
+    --hero-height: clamp(480px, 75vh, 760px);
+  }
+
+  main > section {
+    position: relative;
+    z-index: 1;
+  }
+
+  main > .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--hero-height);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.65;
+  }
+
+  @media (max-width: 720px) {
+    main > .hero-bg {
+      opacity: 0.45;
+    }
+  }
+</style>

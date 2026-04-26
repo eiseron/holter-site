@@ -1,0 +1,620 @@
+---
+type Tile = {
+  cx: number;
+  cy: number;
+  d: string;
+  dur: number;
+  delay: number;
+  status?: "down" | "degraded" | "compromised";
+  peripheral?: boolean;
+};
+
+const tiles: Tile[] = [
+  {
+    cx: 180,
+    cy: 570,
+    d: "M752 408 H420 V570 H180",
+    dur: 5.4,
+    delay: -2.0,
+    peripheral: true,
+    status: "degraded",
+  },
+  { cx: 440, cy: 590, d: "M752 416 H580 V590 H440", dur: 4.8, delay: -3.5 },
+  {
+    cx: 380,
+    cy: 640,
+    d: "M752 404 H720 V640 H380",
+    dur: 5.1,
+    delay: -2.1,
+    status: "down",
+  },
+  {
+    cx: 100,
+    cy: 420,
+    d: "M752 440 H200 V420 H100",
+    dur: 5.5,
+    delay: -0.8,
+    peripheral: true,
+  },
+  { cx: 300, cy: 430, d: "M752 448 H600 V430 H300", dur: 4.5, delay: -2.5 },
+  { cx: 220, cy: 480, d: "M752 456 H380 V480 H220", dur: 5.0, delay: -4.5 },
+  {
+    cx: 120,
+    cy: 720,
+    d: "M752 464 H280 V720 H120",
+    dur: 5.4,
+    delay: -2.9,
+    peripheral: true,
+  },
+  { cx: 380, cy: 620, d: "M752 472 H550 V620 H380", dur: 4.9, delay: -0.7 },
+  {
+    cx: 380,
+    cy: 820,
+    d: "M752 496 H480 V820 H380",
+    dur: 4.7,
+    delay: -3.4,
+    status: "compromised",
+  },
+  { cx: 380, cy: 880, d: "M752 480 H320 V880 H380", dur: 4.7, delay: -4.1 },
+  {
+    cx: 160,
+    cy: 890,
+    d: "M752 488 H300 V890 H160",
+    dur: 5.8,
+    delay: -2.3,
+    peripheral: true,
+  },
+
+  {
+    cx: 1440,
+    cy: 570,
+    d: "M848 406 H1240 V570 H1440",
+    dur: 5.6,
+    delay: -4.0,
+    peripheral: true,
+  },
+  { cx: 1180, cy: 590, d: "M848 414 H1020 V590 H1180", dur: 4.6, delay: -0.5 },
+  {
+    cx: 1080,
+    cy: 620,
+    d: "M848 438 H960 V620 H1080",
+    dur: 5.0,
+    delay: -1.9,
+    status: "compromised",
+  },
+  {
+    cx: 1500,
+    cy: 420,
+    d: "M848 446 H1300 V420 H1500",
+    dur: 5.7,
+    delay: -3.3,
+    peripheral: true,
+  },
+  {
+    cx: 1300,
+    cy: 430,
+    d: "M848 454 H1080 V430 H1300",
+    dur: 4.8,
+    delay: -1.2,
+    status: "down",
+  },
+  { cx: 1380, cy: 480, d: "M848 462 H1180 V480 H1380", dur: 4.6, delay: -1.8 },
+  {
+    cx: 1480,
+    cy: 720,
+    d: "M848 470 H1340 V720 H1480",
+    dur: 5.0,
+    delay: -1.5,
+    peripheral: true,
+  },
+  { cx: 1220, cy: 720, d: "M848 478 H1100 V720 H1220", dur: 5.2, delay: -3.6 },
+  { cx: 1220, cy: 880, d: "M848 486 H900 V880 H1220", dur: 5.3, delay: -1.1 },
+  {
+    cx: 1440,
+    cy: 890,
+    d: "M848 494 H1380 V890 H1440",
+    dur: 5.5,
+    delay: -3.7,
+    peripheral: true,
+  },
+
+  { cx: 720, cy: 560, d: "M798 498 V510 H720 V560", dur: 4.6, delay: -1.4 },
+  { cx: 880, cy: 560, d: "M806 498 V525 H880 V560", dur: 4.9, delay: -3.1 },
+
+  { cx: 600, cy: 900, d: "M762 498 V750 H600 V900", dur: 5.1, delay: -0.3 },
+  { cx: 700, cy: 760, d: "M786 498 V590 H700 V760", dur: 5.2, delay: -0.6 },
+  { cx: 900, cy: 770, d: "M810 498 V610 H900 V770", dur: 4.5, delay: -2.4 },
+  {
+    cx: 920,
+    cy: 870,
+    d: "M770 498 V730 H920 V870",
+    dur: 5.4,
+    delay: -1.7,
+    status: "degraded",
+  },
+  { cx: 1000, cy: 900, d: "M834 498 V800 H1000 V900", dur: 4.8, delay: -2.6 },
+
+  { cx: 240, cy: 1000, d: "M754 498 V830 H240 V1000", dur: 6.2, delay: -0.4 },
+  { cx: 820, cy: 1020, d: "M820 498 V1020", dur: 5.5, delay: -2.8 },
+  {
+    cx: 1360,
+    cy: 1000,
+    d: "M826 498 V890 H1360 V1000",
+    dur: 6.0,
+    delay: -3.5,
+  },
+
+  {
+    cx: 140,
+    cy: 920,
+    d: "M758 498 V910 H140 V920",
+    dur: 5.5,
+    delay: -0.7,
+    peripheral: true,
+  },
+  { cx: 520, cy: 980, d: "M766 498 V970 H520 V980", dur: 5.8, delay: -1.6 },
+  { cx: 680, cy: 1080, d: "M778 498 V1000 H680 V1080", dur: 6.0, delay: -2.9 },
+  {
+    cx: 1100,
+    cy: 1080,
+    d: "M794 498 V1030 H1100 V1080",
+    dur: 5.7,
+    delay: -4.0,
+  },
+  {
+    cx: 1460,
+    cy: 940,
+    d: "M802 498 V910 H1460 V940",
+    dur: 5.6,
+    delay: -1.3,
+    peripheral: true,
+  },
+  { cx: 320, cy: 1100, d: "M818 498 V1060 H320 V1100", dur: 5.9, delay: -3.5 },
+  {
+    cx: 1280,
+    cy: 1100,
+    d: "M842 498 V1070 H1280 V1100",
+    dur: 5.4,
+    delay: -2.3,
+  },
+];
+
+type StaticTile = {
+  cx: number;
+  cy: number;
+  size?: 10 | 14;
+  peripheral?: boolean;
+};
+
+type InfinityLine = {
+  d: string;
+  cx: number;
+  cy: number;
+  dur: number;
+  delay: number;
+};
+
+const infinityLines: InfinityLine[] = [
+  { d: "M752 412 H620 V340 H-30", cx: -20, cy: 340, dur: 6.5, delay: -1.2 },
+  { d: "M752 458 H350 V500 H-30", cx: -20, cy: 500, dur: 6.8, delay: -3.4 },
+  { d: "M752 466 H160 V640 H-30", cx: -20, cy: 640, dur: 7.0, delay: -0.9 },
+  { d: "M752 492 H560 V780 H-30", cx: -20, cy: 780, dur: 6.2, delay: -2.7 },
+  {
+    d: "M848 410 H980 V340 H1630",
+    cx: 1620,
+    cy: 340,
+    dur: 6.5,
+    delay: -4.2,
+  },
+  {
+    d: "M848 460 H1280 V500 H1630",
+    cx: 1620,
+    cy: 500,
+    dur: 7.0,
+    delay: -1.8,
+  },
+  {
+    d: "M848 468 H1450 V640 H1630",
+    cx: 1620,
+    cy: 640,
+    dur: 6.7,
+    delay: -3.1,
+  },
+  {
+    d: "M848 490 H1160 V780 H1630",
+    cx: 1620,
+    cy: 780,
+    dur: 6.3,
+    delay: -0.5,
+  },
+];
+
+const staticTiles: StaticTile[] = [
+  { cx: 60, cy: 280, peripheral: true },
+  { cx: 260, cy: 280 },
+  { cx: 540, cy: 280, size: 14 },
+  { cx: 820, cy: 280, size: 14 },
+  { cx: 1100, cy: 280 },
+  { cx: 1340, cy: 280, size: 14 },
+  { cx: 1540, cy: 280, peripheral: true },
+
+  { cx: 40, cy: 360, peripheral: true },
+  { cx: 260, cy: 380, size: 14 },
+  { cx: 1240, cy: 380, size: 14 },
+  { cx: 1560, cy: 360, peripheral: true },
+
+  { cx: 40, cy: 460, peripheral: true },
+  { cx: 1560, cy: 460, peripheral: true },
+
+  { cx: 260, cy: 540 },
+  { cx: 520, cy: 540, size: 14 },
+  { cx: 820, cy: 580 },
+  { cx: 1080, cy: 540 },
+  { cx: 1180, cy: 540, size: 14 },
+  { cx: 1340, cy: 540, size: 14 },
+
+  { cx: 260, cy: 580 },
+  { cx: 1340, cy: 580 },
+
+  { cx: 40, cy: 720, peripheral: true },
+  { cx: 260, cy: 720 },
+  { cx: 480, cy: 700, size: 14 },
+  { cx: 820, cy: 720, size: 14 },
+  { cx: 1140, cy: 700, size: 14 },
+  { cx: 1340, cy: 720 },
+  { cx: 1560, cy: 720, peripheral: true },
+
+  { cx: 60, cy: 850, peripheral: true },
+  { cx: 480, cy: 870, size: 14 },
+  { cx: 820, cy: 870 },
+  { cx: 1140, cy: 870, size: 14 },
+  { cx: 1540, cy: 850, peripheral: true },
+
+  { cx: 200, cy: 940 },
+  { cx: 400, cy: 950, size: 14 },
+  { cx: 640, cy: 980 },
+  { cx: 1000, cy: 980 },
+  { cx: 1240, cy: 940, size: 14 },
+  { cx: 1440, cy: 950 },
+
+  { cx: 60, cy: 1020, peripheral: true },
+  { cx: 340, cy: 1050, size: 14 },
+  { cx: 560, cy: 1080 },
+  { cx: 700, cy: 1080, size: 14 },
+  { cx: 940, cy: 1080, size: 14 },
+  { cx: 1080, cy: 1080 },
+  { cx: 1300, cy: 1050, size: 14 },
+  { cx: 1540, cy: 1020, peripheral: true },
+
+  { cx: 60, cy: 1160, peripheral: true },
+  { cx: 240, cy: 1130 },
+  { cx: 380, cy: 1170, size: 14 },
+  { cx: 460, cy: 1160, size: 14 },
+  { cx: 580, cy: 1130 },
+  { cx: 660, cy: 1130 },
+  { cx: 820, cy: 1160, size: 14 },
+  { cx: 980, cy: 1130 },
+  { cx: 1080, cy: 1160 },
+  { cx: 1180, cy: 1160 },
+  { cx: 1280, cy: 1130, size: 14 },
+  { cx: 1380, cy: 1130, size: 14 },
+  { cx: 1480, cy: 1170 },
+  { cx: 1540, cy: 1160, peripheral: true },
+];
+
+const networkLines: string[] = [
+  "M200 940 H300 V950 H400",
+  "M640 980 H1000",
+  "M1240 940 V1050 H1300",
+  "M340 1050 V1080 H560",
+  "M700 1080 H940",
+  "M940 1080 V980 H1000",
+  "M1080 1080 V1050 H1300",
+  "M60 1020 H340 V1050",
+
+  "M60 1160 H240 V1130",
+  "M460 1160 H560 V1080",
+  "M660 1130 V1080 H700",
+  "M820 1160 H980 V1130",
+  "M1180 1160 V1130 H1380",
+  "M1380 1130 V1050 H1300",
+  "M340 1050 V1130 H240",
+  "M1080 1080 V1160 H1180",
+
+  "M380 1170 H580 V1130",
+  "M1080 1160 H1280 V1130",
+  "M1480 1170 V1130 H1380",
+  "M460 1160 V1170 H380",
+  "M820 1160 V1170 H980",
+];
+---
+
+<svg
+  class="mesh"
+  viewBox="0 0 1600 900"
+  preserveAspectRatio="xMidYMid slice"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <defs>
+    <radialGradient
+      id="mesh-fade"
+      cx="800"
+      cy="180"
+      r="1200"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stop-color="white" stop-opacity="1"></stop>
+      <stop offset="55%" stop-color="white" stop-opacity="1"></stop>
+      <stop offset="100%" stop-color="white" stop-opacity="0"></stop>
+    </radialGradient>
+    <mask id="mesh-mask">
+      <rect x="0" y="0" width="1600" height="900" fill="url(#mesh-fade)"></rect>
+    </mask>
+  </defs>
+
+  <g mask="url(#mesh-mask)">
+    <g transform="translate(0 -270)">
+      {networkLines.map((d) => <path class="network-line" d={d} />)}
+
+      {
+        infinityLines.map((il) => (
+          <g
+            class="infinity-link"
+            style={`--dur: ${il.dur}s; --delay: ${il.delay}s`}
+          >
+            <path class="infinity-line infinity-line--idle" d={il.d} />
+            <path
+              class="infinity-line infinity-line--spark"
+              d={il.d}
+              pathLength="100"
+            />
+            <rect
+              class="infinity-tile"
+              x={il.cx - 7}
+              y={il.cy - 7}
+              width="14"
+              height="14"
+            />
+          </g>
+        ))
+      }
+
+      {
+        staticTiles.map((s) => {
+          const size = s.size ?? 10;
+          return (
+            <rect
+              class:list={[
+                "static-tile",
+                { "static-tile--peripheral": s.peripheral },
+              ]}
+              x={s.cx - size / 2}
+              y={s.cy - size / 2}
+              width={size}
+              height={size}
+            />
+          );
+        })
+      }
+
+      {
+        tiles.map((tile) => (
+          <g
+            class:list={["link", { "link--peripheral": tile.peripheral }]}
+            data-status={tile.status}
+            style={`--dur: ${tile.dur}s; --delay: ${tile.delay}s`}
+          >
+            <path class="trace trace--idle" d={tile.d} />
+            <path class="trace trace--spark" d={tile.d} pathLength="100" />
+            <rect
+              class="tile"
+              x={tile.cx - 7}
+              y={tile.cy - 7}
+              width="14"
+              height="14"
+            />
+          </g>
+        ))
+      }
+
+      <g class="holter" transform="translate(752 402) scale(0.094)">
+        <path
+          class="pillar"
+          d="M670.524 193.163C723.003 192.972 776.58 192.659 828.998 193.309L828.914 830.625L736.75 830.641L670.315 830.776L670.195 600.459L761.346 600.468L761.132 423.564L670.432 423.565L670.43 274.932C670.419 248.07 669.986 219.939 670.524 193.163Z"
+        ></path>
+        <path
+          class="pillar"
+          d="M195.669 193.227L353.796 193.18C354.075 219.217 353.555 246.142 353.512 272.262L353.711 423.51L263.694 423.638C263.276 443.854 263.591 465.202 263.598 485.49L263.65 600.462L353.819 600.612L353.51 741.625L353.797 830.602L195.386 830.58L195.376 340.328L195.372 230.772C195.368 224.53 194.515 197.591 195.669 193.227Z"
+        ></path>
+        <path
+          class="bridge-active"
+          d="M606.47 449.954C620.074 449.591 635.261 449.897 648.994 449.896L729.526 449.837L729.593 573.962C689.444 573.193 646.859 573.966 606.545 574.03L606.47 449.954Z"
+        ></path>
+        <path
+          class="bridge-past"
+          d="M295.011 450.054L417.859 449.975L417.727 573.775L294.998 573.926L295.011 450.054Z"
+        ></path>
+        <path
+          class="bridge-transition"
+          d="M450.983 449.939L573.378 449.919L573.318 573.957C560.503 574.381 545.011 573.994 531.964 573.995L450.922 574.011L450.983 449.939Z"
+        ></path>
+      </g>
+    </g>
+  </g>
+</svg>
+
+<style>
+  .mesh {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .link {
+    --node-fill: var(--color-status-up);
+    --node-fill-light: var(--color-status-up-light);
+    --node-stroke: var(--color-monitor-pulse-primary);
+  }
+
+  .link[data-status="down"] {
+    --node-fill: var(--color-status-down);
+    --node-fill-light: var(--color-status-down-light);
+    --node-stroke: var(--color-status-down);
+  }
+
+  .link[data-status="degraded"] {
+    --node-fill: var(--color-status-degraded);
+    --node-fill-light: var(--color-status-degraded-light);
+    --node-stroke: var(--color-status-degraded);
+  }
+
+  .link[data-status="compromised"] {
+    --node-fill: var(--color-status-compromised);
+    --node-fill-light: var(--color-status-compromised-light);
+    --node-stroke: var(--color-status-compromised);
+  }
+
+  .trace {
+    fill: none;
+    stroke: var(--node-stroke);
+    stroke-width: 1.5;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+  }
+
+  .trace--idle {
+    opacity: 0.22;
+  }
+
+  .trace--spark {
+    stroke-width: 2;
+    stroke-dasharray: 6 999;
+    stroke-dashoffset: 0;
+    animation: trace-pulse var(--dur) linear infinite;
+    animation-delay: var(--delay);
+  }
+
+  .tile {
+    fill: var(--node-fill);
+    opacity: 0.35;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: tile-flash var(--dur) linear infinite;
+    animation-delay: var(--delay);
+  }
+
+  .static-tile {
+    fill: var(--color-status-unknown);
+    opacity: 0.5;
+  }
+
+  .network-line {
+    fill: none;
+    stroke: var(--color-status-unknown);
+    stroke-width: 1.5;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    opacity: 0.4;
+  }
+
+  .infinity-line {
+    fill: none;
+    stroke: var(--color-monitor-pulse-primary);
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+  }
+
+  .infinity-line--idle {
+    stroke-width: 1.5;
+    opacity: 0.22;
+  }
+
+  .infinity-line--spark {
+    stroke-width: 2;
+    stroke-dasharray: 6 999;
+    stroke-dashoffset: 0;
+    animation: trace-pulse var(--dur) linear infinite;
+    animation-delay: var(--delay);
+  }
+
+  .infinity-tile {
+    fill: var(--color-status-up);
+    opacity: 0.35;
+  }
+
+  .pillar,
+  .bridge-active,
+  .bridge-past,
+  .bridge-transition {
+    opacity: 0.6;
+  }
+  .pillar {
+    fill: var(--color-text);
+  }
+  .bridge-active {
+    fill: var(--prim-cyber-blue);
+  }
+  .bridge-past {
+    fill: var(--prim-gray-40);
+  }
+  .bridge-transition {
+    fill: var(--prim-gray-60);
+  }
+
+  @keyframes trace-pulse {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -100;
+    }
+  }
+
+  @keyframes tile-flash {
+    0%,
+    90% {
+      fill: var(--node-fill);
+      opacity: 0.35;
+      transform: scale(1);
+    }
+    95% {
+      fill: var(--node-fill-light);
+      opacity: 1;
+      transform: scale(1.4);
+    }
+    100% {
+      fill: var(--node-fill);
+      opacity: 0.35;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-color-scheme: light), print {
+    .bridge-past {
+      fill: #d2d2d2;
+    }
+    .bridge-transition {
+      fill: #717171;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .link--peripheral,
+    .static-tile--peripheral {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trace--spark,
+    .infinity-line--spark {
+      animation: none;
+      opacity: 0;
+    }
+    .tile {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+</style>
