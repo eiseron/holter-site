@@ -22,6 +22,21 @@ const ogImageUrl = new URL(
   ogImage,
   Astro.site ?? "https://holter.dev",
 ).toString();
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Holter",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: Astro.site?.origin ?? "https://holter.dev",
+  description,
+  publisher: {
+    "@type": "Organization",
+    name: "Eiseron",
+    url: "https://eiseron.com",
+  },
+};
 ---
 
 <!doctype html>
@@ -32,6 +47,17 @@ const ogImageUrl = new URL(
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="theme-color"
+      content="#fafafa"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#121212"
+      media="(prefers-color-scheme: dark)"
+    />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 
@@ -42,11 +68,16 @@ const ogImageUrl = new URL(
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Holter" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Holter" />
 
     <link
       rel="preload"
@@ -61,6 +92,12 @@ const ogImageUrl = new URL(
       as="font"
       type="font/woff2"
       crossorigin
+    />
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(softwareSchema)}
     />
   </head>
   <body>
