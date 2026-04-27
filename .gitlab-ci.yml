@@ -49,7 +49,7 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
-    - npx wrangler@latest pages deploy dist --project-name=holter-site --branch=main
+    - npx wrangler@4 pages deploy dist --project-name=holter-site --branch=main
   environment:
     name: production
     url: https://holter.dev
